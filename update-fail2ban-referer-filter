@@ -8,9 +8,7 @@ readonly CURRENT_LIST_FILE=/etc/fail2ban/referer-spam-blacklist.txt
 
 # auto cleanup
 at_exit() {
-  set +u
-  rm -Rf "$TMP_DIR"
-  set -u
+  [ "${TMP_DIR:-}" ] && rm -Rf "${TMP_DIR}"
 }
 trap at_exit EXIT
 
